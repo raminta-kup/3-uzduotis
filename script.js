@@ -15,20 +15,18 @@ const showBtn = document.querySelector("#btn");
 const message = document.querySelector("#message");
 const output = document.querySelector("#output");
 
-
 function getUsers() {
     fetch(ENDPOINT)
-    .then((response) => response.json())
-    .then((data) => {
-        for(let i = 0; i < data.length; i++) {
-            const user = data[i];
-            console.log(user.login)
-            console.log(user.avatar_url)
-            createCard(user.login, user.avatar_url);
-        }
-    })
-    .catch((error => alert("Oops! an error occurred.")));
-    
+        .then((response) => response.json())
+        .then((data) => {
+            for (let i = 0; i < data.length; i++) {
+                const user = data[i];
+                console.log(user.login)
+                console.log(user.avatar_url)
+                createCard(user.login, user.avatar_url);
+            }
+        })
+        .catch((error => alert("Oops! an error occurred.")));
 }
 
 function createCard(login, img) {
