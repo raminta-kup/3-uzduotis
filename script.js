@@ -21,39 +21,33 @@ function getUsers() {
         .then((data) => {
             for (let i = 0; i < data.length; i++) {
                 const user = data[i];
-                console.log(user.login)
-                console.log(user.avatar_url)
                 createCard(user.login, user.avatar_url);
             }
         })
-        .catch((error => alert("Oops! an error occurred.")));
+        .catch((error => alert("Oops! an error occurred.", error)));
 }
 
 function createCard(login, img) {
     const userContainer = document.createElement("div");
     const userImg = document.createElement("img");
     const userLogin = document.createElement("span");
+    userContainer.classList.add("user-container");
+    userImg.classList.add("user-img");
 
     output.append(userContainer);
     userContainer.append(userImg, userLogin);
+    
     userImg.src = img;
     userLogin.textContent = login;
-    userImg.style.width = "100px";
-    userImg.style.borderRadius = "50%";
     userLogin.style.fontSize = "24px"
-    userContainer.style.display = "flex";
-    userContainer.style.flexDirection = "column";
-    userContainer.style.alignItems = "center";
     output.style.gap = "48px";
-    output.style.display = "grid";
-    output.style.gridTemplateColumns = "repeat(6, 1fr)";
 }
 
 showBtn.addEventListener("click", (e) => {
     e.preventDefault();
     getUsers();
     message.remove();
-})
+});
 
 
 
